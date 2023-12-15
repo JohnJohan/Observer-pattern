@@ -1,0 +1,24 @@
+
+public class MyTopicSubscriber implements NewsAgency {
+
+    private String name;
+    private Subscriber topic;
+
+    public MyTopicSubscriber(String nm){
+        this.name=nm;
+    }
+    @Override
+    public void update() {
+        String msg = (String) topic.getUpdate(this);
+        if(msg == null){
+            System.out.println(name+":: No new update");
+        }else
+            System.out.println(name+":: Consuming message::"+msg);
+    }
+
+    @Override
+    public void setSubject(Subscriber sub) {
+        this.topic=sub;
+    }
+
+}
